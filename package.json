@@ -1,8 +1,12 @@
 {
   "name": "react-window-kit",
   "version": "0.1.0",
-  "license": "MIT",
   "description": "react window kit.",
+  "homepage": "http://github.com/zhbhun/react-window-kit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhbhun/react-window-kit.git"
+  },
   "keywords": [
     "web",
     "kit",
@@ -13,23 +17,17 @@
     "window",
     "front-end"
   ],
-  "homepage": "http://github.com/zhbhun/react-window-kit",
-  "author": "zhbhun",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zhbhun/react-window-kit.git"
-  },
-  "bugs": {
-    "url": "https://github.com/zhbhun/react-window-ki/issues"
-  },
-  "main": "./lib/index",
   "files": [
     "dist",
-    "lib/*.js"
+    "lib/*.js",
+    "style/*.css"
   ],
+  "main": "./lib/index",
   "scripts": {
-    "dev": "webpack-dev-server",
-    "test": "webpack-dev-server --config webpack.config.test.js"
+    "clean": "rimraf lib",
+    "build": "npm run clean && babel src --out-dir lib -e 0",
+    "test": "webpack-dev-server --config webpack.config.test.js",
+    "dist": "webpack --config webpack.config.dist.js"
   },
   "dependencies": {
     "classnames": "^2.1.3",
@@ -39,24 +37,24 @@
     "react-overlays": "^0.4.4"
   },
   "devDependencies": {
-    "jquery": "^2.1.4",
-    "bootstrap": "^3.3.5",
-    "react-bootstrap": "^0.25.2",
     "babel-core": "^5.6.15",
     "babel-loader": "^5.2.2",
+    "bootstrap": "^3.3.5",
     "bundle-loader": "^0.5.4",
     "css-loader": "^0.15.1",
     "extract-text-webpack-plugin": "^0.8.2",
+    "jquery": "^2.1.4",
     "node-libs-browser": "^0.5.2",
+    "react-bootstrap": "^0.25.2",
+    "rimraf": "^2.4.3",
     "style-loader": "^0.12.3",
     "url-loader": "^0.5.6",
     "webpack": "^1.10.1",
     "webpack-dev-server": "^1.10.1"
   },
-  "maintainers": [
-    {
-      "name": "zhbhun",
-      "email": "zhbhun@gmail.com"
-    }
-  ]
+  "author": "zhbhun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhbhun/react-window-ki/issues"
+  }
 }

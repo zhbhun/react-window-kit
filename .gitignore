@@ -74,7 +74,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-
-.idea/
 .git/
+.idea/
 dist/
+lib/
+node_modules/

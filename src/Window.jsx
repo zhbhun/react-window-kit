@@ -4,8 +4,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import assign from 'object-assign';
-import {Portal} from 'react-overlays';
-import {Transition} from 'react-overlays';
+import {Portal, Transition} from 'react-overlays';
 import Align from 'rc-align';
 import {noop} from './utils';
 
@@ -45,7 +44,6 @@ export default class Window extends React.Component {
             React.PropTypes.func,
             React.PropTypes.bool
         ]),
-        //onClose: React.PropTypes.func,
         // 显示前回调函数
         onShow: React.PropTypes.func,
         // 定位后回调函数
@@ -56,9 +54,9 @@ export default class Window extends React.Component {
         onHide: React.PropTypes.func,
         // 隐藏后(动画结束)回调函数
         onHidden: React.PropTypes.func,
-        closeComponent: React.PropTypes.func,
-        restoreComponent: React.PropTypes.func,
-        maximizeComponent: React.PropTypes.func
+        close: React.PropTypes.element,
+        restore: React.PropTypes.element,
+        maximize: React.PropTypes.element
     }
 
     static defaultProps = {
@@ -73,16 +71,11 @@ export default class Window extends React.Component {
         backdrop: true,
         keyboard: true,
         animation: false,
-        //onClose: noop,
         onShow: noop,
         onAlign: noop,
         onShown: noop,
         onHide: noop,
         onHidden: noop
-    }
-
-    static config(props) {
-        Window.defaultProps = assign(Window.defaultProps, props);
     }
 
     constructor(props) {
@@ -102,7 +95,6 @@ export default class Window extends React.Component {
             animateExited: !this.props.visible,
             // 是否最大化窗口
             maximize: false
-
         }
     }
 
@@ -135,7 +127,6 @@ export default class Window extends React.Component {
         }
 
         let window = this.renderWindow();
-
         if (backdrop) {
             window = this.renderBackdrop(window);
         }

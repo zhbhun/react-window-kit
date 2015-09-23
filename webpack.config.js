@@ -9,7 +9,7 @@ module.exports = {
         index: path.join(__dirname, './src')
     },
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'lib'),
         filename: '[name].bundle.js',
         publicPath: 'http://localhost:3000/'
     },
