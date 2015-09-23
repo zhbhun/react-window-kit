@@ -20,7 +20,9 @@
   "files": [
     "dist",
     "lib/*.js",
-    "style/*.css"
+    "style/*.css",
+    "README.md",
+    "LICENSE"
   ],
   "main": "./lib/index",
   "scripts": {

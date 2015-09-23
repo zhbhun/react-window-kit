@@ -20,7 +20,7 @@ class ModalDemo extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.openWindow.bind(this)}>打开模态窗口</button>
+                <button onClick={this.openWindow.bind(this)}>open modal</button>
                 <Modal
                     visible={this.state.show}
                     size='lg'
@@ -64,7 +64,7 @@ class ConfirmDemo extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.openWindow.bind(this)}>打开确认窗口</button>
+                <button onClick={this.openWindow.bind(this)}>open confirm</button>
                 <Confirm
                     visible={this.state.show}
                     title='Are you sure!'
@@ -106,7 +106,7 @@ class ConfirmTip extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.openWindow.bind(this)}>打开消息窗口</button>
+                <button onClick={this.openWindow.bind(this)}>open tip</button>
                 <Tip
                     visible={this.state.show}
                     type='info'
