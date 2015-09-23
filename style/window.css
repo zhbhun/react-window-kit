@@ -1,0 +1,86 @@
+/* 背景幕布 */
+.window-fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+}
+.window-in {
+    opacity: 1;
+}
+.window-backdrop {
+    position: fixed;
+    z-index: 1040;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+}
+.window-backdrop.window-fade {
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+.window-backdrop.window-in {
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+
+/* 窗口 */
+.window {
+    position: fixed;
+    z-index: 1050;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+
+/* 对话框 */
+.window-dialog {
+    position: relative;
+    width: auto;
+    margin: auto;
+    overflow: auto;
+
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+}
+
+/* 正文 */
+.window-content {
+    /* 可作为window-operation的参考上下文, 以便自动设置window-operation的上边距 */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* 操作 */
+.window-operate {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.window-operate > * {
+    margin-right: 6px;
+    cursor: pointer;
+    color: #000;
+    opacity: .2;
+}
+.window-operate > *:last-child {
+    margin-right: 12px;
+}
+.window-operate > *:hover {
+    opacity: 1;
+}

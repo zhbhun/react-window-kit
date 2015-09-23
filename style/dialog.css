@@ -1,0 +1,48 @@
+.window-confirm .window-content,
+.window-tip .window-content {
+    padding: 30px 40px;
+}
+.window-confirm .window-header,
+.window-tip .window-header {
+    color: #666666;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 36px;
+}
+.window .window-header .window-sign {
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    margin-right: 12px;
+    font-size: 24px;
+    color: yellow;
+}
+.window .window-header .window-sign-info {
+    color: blue;
+}
+.window .window-header .window-sign-success {
+    color: green;
+}
+.window .window-header .window-sign-warning {
+    color: yellow;
+}
+.window .window-header .window-sign-danger {
+    color: red;
+}
+
+.window-confirm .window-body,
+.window-tip .window-body {
+    margin-left: 37px;
+    font-size: 12px;
+    color: #666666;
+}
+
+.window-confirm .window-footer,
+.window-tip .window-footer {
+    margin-top: 30px;
+    float: right;
+}
+.window-confirm .window-footer button + button {
+    margin-left: 10px;
+    margin-bottom: 0;
+}

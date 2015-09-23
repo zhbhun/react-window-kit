@@ -1,0 +1,62 @@
+{
+  "name": "react-window-kit",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "react window kit.",
+  "keywords": [
+    "web",
+    "kit",
+    "react",
+    "react-component",
+    "modal",
+    "dialog",
+    "window",
+    "front-end"
+  ],
+  "homepage": "http://github.com/zhbhun/react-window-kit",
+  "author": "zhbhun",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhbhun/react-window-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zhbhun/react-window-ki/issues"
+  },
+  "main": "./lib/index",
+  "files": [
+    "dist",
+    "lib/*.js"
+  ],
+  "scripts": {
+    "dev": "webpack-dev-server",
+    "test": "webpack-dev-server --config webpack.config.test.js"
+  },
+  "dependencies": {
+    "classnames": "^2.1.3",
+    "object-assign": "^4.0.1",
+    "rc-align": "1.x",
+    "react": "~0.13.3",
+    "react-overlays": "^0.4.4"
+  },
+  "devDependencies": {
+    "jquery": "^2.1.4",
+    "bootstrap": "^3.3.5",
+    "react-bootstrap": "^0.25.2",
+    "babel-core": "^5.6.15",
+    "babel-loader": "^5.2.2",
+    "bundle-loader": "^0.5.4",
+    "css-loader": "^0.15.1",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "node-libs-browser": "^0.5.2",
+    "style-loader": "^0.12.3",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.10.1",
+    "webpack-dev-server": "^1.10.1"
+  },
+  "maintainers": [
+    {
+      "name": "zhbhun",
+      "email": "zhbhun@gmail.com"
+    }
+  ]
+}
