@@ -50,7 +50,16 @@ export default class Confirm extends React.Component {
                 animation={false}
                 >
                 <div className={`${prefixCls}-header`}>
-                    {React.cloneElement(sign, {className: `${prefixCls}-sign`})}
+                    {
+                        sign ?
+                            React.cloneElement(sign, {
+                                className: classNames(
+                                    `${prefixCls}-sign`,
+                                    sign.props.className
+                                )
+                            }) :
+                            null
+                    }
                     {title}
                 </div>
                 <div className={`${prefixCls}-body`}>{children}</div>

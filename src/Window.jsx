@@ -264,28 +264,28 @@ export default class Window extends React.Component {
         let operation = [];
 
         // 还原窗口
-        if (maximizable && max) {
+        if (maximizable && max && restore) {
             operation.push(React.cloneElement(restore, {
                 key: 'restore',
-                className: classNames(`${prefixCls}-restore`),
+                className: classNames(`${prefixCls}-restore`, restore.props.className),
                 onClick: () => this.setState({maximize: false})
             }));
         }
 
         // 最大化窗口
-        if (maximizable && !max) {
+        if (maximizable && !max && maximize) {
             operation.push(React.cloneElement(maximize, {
                 key: 'maximize',
-                className: classNames(`${prefixCls}-maximize`),
+                className: classNames(`${prefixCls}-maximize`, maximize.props.className),
                 onClick: () => this.setState({maximize: true})
             }));
         }
 
         // 关闭窗口
-        if (closable) {
+        if (closable && close) {
             operation.push(React.cloneElement(close, {
                 key: 'close',
-                className: classNames(`${prefixCls}-close`),
+                className: classNames(`${prefixCls}-close`, close.props.className),
                 onClick: this.handleClose.bind(this)
             }));
         }

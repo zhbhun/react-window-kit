@@ -49,7 +49,16 @@ export default class Tip extends React.Component {
                 animation={false}
                 >
                 <div className={`${prefixCls}-header`}>
-                    {React.cloneElement(sign, {className: `${prefixCls}-sign ${prefixCls}-sign-${type}`})}
+                    {
+                        sign ?
+                            React.cloneElement(sign, {
+                                className: classNames(
+                                    `${prefixCls}-sign ${prefixCls}-sign-${type}`,
+                                    sign.props.className
+                                )
+                            }) :
+                            null
+                    }
                     {title}
                 </div>
                 <div className={`${prefixCls}-body`}>{children}</div>
