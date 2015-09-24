@@ -44,13 +44,11 @@ export default class Window extends React.Component {
             React.PropTypes.func,
             React.PropTypes.bool
         ]),
-        // 显示前回调函数
-        onShow: React.PropTypes.func,
         // 定位后回调函数
         onAlign: React.PropTypes.func,
         // 显示后(动画结束)回调函数
         onShown: React.PropTypes.func,
-        // 隐藏前回调函数
+        // 窗口关闭回调函数
         onHide: React.PropTypes.func,
         // 隐藏后(动画结束)回调函数
         onHidden: React.PropTypes.func,
@@ -71,7 +69,6 @@ export default class Window extends React.Component {
         backdrop: true,
         keyboard: true,
         animation: false,
-        onShow: noop,
         onAlign: noop,
         onShown: noop,
         onHide: noop,
@@ -92,26 +89,57 @@ export default class Window extends React.Component {
              * - 关闭窗口(visible=false): 窗口关闭但动画未结束保持 false(需要动画结束事件处理)
              * - 动画结束: true
              */
-            animateExited: !this.props.visible,
+            animateExited: true,
             // 是否最大化窗口
             maximize: false
+        }
+    }
+
+    componentDidMount() {
+        let {visible, animation} = this.props;
+        if(!animation && visible) {
+            this.props.onShown();
         }
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.visible) {
             this.setState({
+                // 重置动画退出状态
                 animateExited: false
             })
+        } else {
+            this.setState({
+                // 重置动画进入状态
+                animateEntered: false
+            });
         }
     }
 
-    componentWillUpdate() {
-        if(this.state.animateExited) {
+    componentWillUpdate(extProps, nextState) {
+        let {visible, animation} = this.props;
+        let {animateExited} = this.state;
+
+        if((animation && animateExited) || (!animation && !visible)) {
             this.setState({
                 // 重置窗口的最大化状态
                 maximize: false
             })
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        let {visible, animation} = this.props;
+        let {animateEntered, animateExited} = this.state;
+
+        if((animation && !prevState.animateEntered && animateEntered)
+            || (!animation && !prevProps.visible && visible)) {
+            this.props.onShown();
+        }
+
+        if((animation && !prevState.animateExited && animateExited)
+            || (!animation && prevProps.visible && !visible)) {
+            this.props.onHidden();
         }
     }
 
@@ -206,7 +234,7 @@ export default class Window extends React.Component {
                     onExited={this.handleAnimateExited.bind(this)}
                     onEnter={onEnter}
                     onEntering={onEntering}
-                    onEntered={onEntered}>
+                    onEntered={this.handleAnimateEntered.bind(this)}>
                     {window}
                 </Animation>
             );
@@ -313,6 +341,9 @@ export default class Window extends React.Component {
         );
     }
 
+    handleAlign() {
+        setTimeout(() => this.props.onAlign(), 0);
+    }
 
     handleBackdropClick(e) {
         let {prefixCls} = this.props;
@@ -322,19 +353,6 @@ export default class Window extends React.Component {
         }
     }
 
-    handleAnimateExited(...args) {
-        let props = this.props;
-        this.setState({animateExited: true});
-
-        if (props.onExited) {
-            props.onExited(...args);
-        }
-    }
-
-    handleAlign() {
-        setTimeout(() => this.props.onAlign(), 0);
-    }
-
     /**
      * 关闭窗口
      */
@@ -342,4 +360,15 @@ export default class Window extends React.Component {
         let props = this.props;
         props.onHide();
     }
+
+    handleAnimateEntered(...args) {
+        let props = this.props;
+        this.setState({animateEntered: true});
+    }
+
+    handleAnimateExited(...args) {
+        let props = this.props;
+        this.setState({animateExited: true});
+    }
+
 }
