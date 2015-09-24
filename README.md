@@ -1,4 +1,5 @@
-﻿# react-window-kit
+﻿
+# react-window-kit
 Kit for creating window component. 
 
 # Install
@@ -16,16 +17,16 @@ Execute `npm run test`, then check `http://localhost:3000/`
 | name | type | default | description |
 | ------------ | ------------ | ------------ | ------------ |
 | visible | Boolean | false | whether show window |
-| position | Object | {align: 'cc', offset: [0, 0]} | Align option values: tr, tc, tl, cl, cc, cr, bl, bc, br. |
-| size | Object  |   | {width, height} |
+| position | Object | `{align: 'cc', offset: [0, 0]}` | Align option values: tr, tc, tl, cl, cc, cr, bl, bc, br. |
+| size | Object  |   | width, height |
 | closable | Boolean | true |  |
 | maximizable | Boolean | false |   |
 | backdrop | Boolean | true |   |
 | keyboard | Boolean | true |   |
 | animation | Boolean/ReactComponent |   |   |
-| onShow | function |   |   |
 | onAlign | function |   |   |
 | onShown | function |   |   |
+| onHide | function |   |   |
 | onHidden | function |   |   |
 | close | ReactElement |   | close button |
 | restore | ReactElement |   |  restore button |
@@ -58,11 +59,15 @@ Execute `npm run test`, then check `http://localhost:3000/`
 | type | String | info | info, success, warning, danger |
 | title | String |   |   |
 | onOk | function |   |   |
-| sign | ReactElement |   | tip sign icon |
+| sign | Object |   | tip sign icon. `{info: ReactElement, success: ReactElement, warning: ReactElement, danger: ReactElement}` |
 | ok | ReactElement |   | ok button |
 
 # Feature
 - support IE8,IE8+, Chrome, Firefox, Safari
+
+# Todo
+1. auto focus 
+2. ESC shortcut
 
 # License
 react-window-kit is released under the MIT license.
