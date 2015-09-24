@@ -5,6 +5,7 @@ import React from 'react';
 import classNames from 'classnames';
 import {noop} from './utils';
 import Animation from './Animation';
+import WindowComponent from './Window';
 
 export default class Modal extends React.Component {
 
@@ -18,7 +19,7 @@ export default class Modal extends React.Component {
     }
 
     static defaultProps = {
-        Window: Window,
+        WindowComponent: WindowComponent,
         visible: false,
         size: 'md',
         onHide: noop
@@ -32,7 +33,7 @@ export default class Modal extends React.Component {
     render() {
         let props = this.props;
         let state = this.state;
-        let {Window, visible, size, onHide, header, children, footer} = props;
+        let {WindowComponent, visible, size, onHide, header, children, footer} = props;
         let prefixCls = 'window-modal';
 
         let modal = [];
@@ -78,7 +79,7 @@ export default class Modal extends React.Component {
         }
 
         return (
-            <Window
+            <WindowComponent
                 className={classNames(prefixCls, `${prefixCls}-${size}`)}
                 visible={visible}
                 position={{align: 'cc', offset: [0, 0]}}
@@ -91,7 +92,7 @@ export default class Modal extends React.Component {
                 onHide={onHide}
                 >
                 {modal}
-            </Window>
+            </WindowComponent>
         )
     }
 

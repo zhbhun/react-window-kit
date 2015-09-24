@@ -4,6 +4,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import {noop} from './utils';
+import WindowComponent from './Window';
 
 export default class Tip extends React.Component {
 
@@ -15,7 +16,7 @@ export default class Tip extends React.Component {
     }
 
     static defaultProps = {
-        Window: Window,
+        WindowComponent: WindowComponent,
         sign: null,
         ok: null,
 
@@ -32,12 +33,12 @@ export default class Tip extends React.Component {
     render() {
         let props = this.props;
         let state = this.state;
-        let {Window, sign, ok, visible, type, title, children, onOk} = props;
+        let {WindowComponent, sign, ok, visible, type, title, children, onOk} = props;
         sign = sign[type];
         let prefixCls = 'window';
 
         return (
-            <Window
+            <WindowComponent
                 className={classNames(`${prefixCls}-tip`)}
                 visible={visible}
                 position={{align: 'cc', offset: [0, 0]}}
@@ -65,7 +66,7 @@ export default class Tip extends React.Component {
                 <div className={`${prefixCls}-footer`}>
                     {React.cloneElement(ok, {onClick: onOk})}
                 </div>
-            </Window>
+            </WindowComponent>
         )
     }
 }

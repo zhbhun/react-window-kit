@@ -4,8 +4,7 @@
 import React from 'react';
 import {Transition} from 'react-overlays';
 import assign from 'object-assign';
-
-function noop() {}
+import {noop} from './utils';
 
 export default class Animation extends React.Component {
 

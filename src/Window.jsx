@@ -77,6 +77,10 @@ export default class Window extends React.Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentWillMount() {
+        let props = this.props;
         this.state = {
             // 窗口 id
             id: props.id ? props.id : ('window' + id++),
@@ -154,16 +158,16 @@ export default class Window extends React.Component {
             return null;
         }
 
-        let window = this.renderWindow();
+        let win = this.renderWindow();
         if (backdrop) {
-            window = this.renderBackdrop(window);
+            win = this.renderBackdrop(win);
         }
 
         return (
             <Portal
                 container={document.body}
                 >
-                {window}
+                {win}
             </Portal>
         );
     }
@@ -172,10 +176,10 @@ export default class Window extends React.Component {
     /**
      * 渲染窗口背景布幕
      *
-     * @param window
+     * @param win
      * @returns {XML}
      */
-    renderBackdrop(window) {
+    renderBackdrop(win) {
         let {prefixCls, visible, animation, closable} = this.props;
         let onClick = closable ? this.handleBackdropClick.bind(this) : null;
 
@@ -198,7 +202,7 @@ export default class Window extends React.Component {
         return (
             <div>
                 {backdrop}
-                {window}
+                {win}
             </div>
         );
     }
@@ -214,7 +218,7 @@ export default class Window extends React.Component {
         let Animation = animation;
         animation = !!animation;
 
-        let window = (
+        let win = (
             <div
                 {...props}
                 id={this.state.id}
@@ -226,7 +230,7 @@ export default class Window extends React.Component {
         );
 
         if (animation) {
-            window = (
+            win = (
                 <Animation
                     in={visible}
                     onExit={onExit}
@@ -235,12 +239,12 @@ export default class Window extends React.Component {
                     onEnter={onEnter}
                     onEntering={onEntering}
                     onEntered={this.handleAnimateEntered.bind(this)}>
-                    {window}
+                    {win}
                 </Animation>
             );
         }
 
-        return window;
+        return win;
     }
 
     /**

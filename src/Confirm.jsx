@@ -1,10 +1,10 @@
 /**
  * Created by zhbhun on 2015/9/17.
  */
-
 import React from 'react';
 import classNames from 'classnames';
 import {noop} from './utils.js';
+import WindowComponent from './Window';
 
 export default class Confirm extends React.Component {
 
@@ -16,7 +16,7 @@ export default class Confirm extends React.Component {
     }
 
     static defaultProps = {
-        Window: Window,
+        WindowComponent: WindowComponent,
         sign: null,
         cancel: null,
         ok: null,
@@ -34,11 +34,11 @@ export default class Confirm extends React.Component {
     render() {
         let props = this.props;
         let state = this.state;
-        let {Window, sign, cancel, ok, visible, title, children, onCancel, onOk} = props;
+        let {WindowComponent, sign, cancel, ok, visible, title, children, onCancel, onOk} = props;
         let prefixCls = 'window';
 
         return (
-            <Window
+            <WindowComponent
                 className={classNames(`${prefixCls}-confirm`)}
                 visible={visible}
                 position={{align: 'cc', offset: [0, 0]}}
@@ -67,7 +67,7 @@ export default class Confirm extends React.Component {
                     {React.cloneElement(cancel, {onClick: onCancel})}
                     {React.cloneElement(ok, {onClick: onOk})}
                 </div>
-            </Window>
+            </WindowComponent>
         )
     }
 }
