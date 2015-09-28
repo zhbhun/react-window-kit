@@ -120,11 +120,12 @@ export default class Window extends React.Component {
         }
     }
 
-    componentWillUpdate(extProps, nextState) {
+    componentWillUpdate(nextProps, nextState) {
         let {visible, animation} = this.props;
         let {animateExited} = this.state;
 
-        if((animation && animateExited) || (!animation && !visible)) {
+        if((animation && !animateExited && nextState.animateExited)
+            || (!animation && visible && !nextProps.visible)) {
             this.setState({
                 // 重置窗口的最大化状态
                 maximize: false
