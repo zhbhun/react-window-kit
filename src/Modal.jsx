@@ -27,7 +27,17 @@ export default class Modal extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            fixed: false // TODO 上层组件更新同步
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.visible && !this.props.visible) {
+            this.setState({
+                fixed: false
+            });
+        }
     }
 
     render() {
@@ -56,7 +66,7 @@ export default class Modal extends React.Component {
                 ref='body'
                 className={classNames(`${prefixCls}-body`)}
                 >
-                {children}
+                {this.state.fixed ? children : false}
             </div>
         );
         if (footer) {
@@ -97,19 +107,24 @@ export default class Modal extends React.Component {
     }
 
     handleAlign() {
-        let {header, body, footer} = this.refs;
-        body = React.findDOMNode(body);
-        let headerAndFooterHeight = 0;
-        if(header) {
-            header = React.findDOMNode(header);
-            headerAndFooterHeight += header.clientHeight;
+        if(!this.state.fixed) {
+            let {header, body, footer} = this.refs;
+            body = React.findDOMNode(body);
+            let headerAndFooterHeight = 0;
+            if(header) {
+                header = React.findDOMNode(header);
+                headerAndFooterHeight += header.clientHeight;
+            }
+            if(footer) {
+                footer = React.findDOMNode(footer);
+                headerAndFooterHeight += footer.clientHeight;
+            }
+            let modal = body.parentNode;
+            body.style.height = (modal.clientHeight - headerAndFooterHeight) + 'px';
+            this.setState({
+                fixed: true
+            });
         }
-        if(footer) {
-            footer = React.findDOMNode(footer);
-            headerAndFooterHeight += footer.clientHeight;
-        }
-        let modal = body.parentNode;
-        body.style.height = (modal.clientHeight - headerAndFooterHeight) + 'px';
     }
 
     handleOperation(key) {
