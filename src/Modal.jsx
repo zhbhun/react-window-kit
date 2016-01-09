@@ -45,6 +45,12 @@ export default class Modal extends React.Component {
         let state = this.state;
         let {WindowComponent, visible, size, onHide, header, children, footer} = props;
         let prefixCls = 'window-modal';
+        
+        let sizeProp;
+        if(typeof size == 'object') {
+            sizeProp = size;
+            size = 'inline';
+        }
 
         let modal = [];
         if (header) {
@@ -93,6 +99,7 @@ export default class Modal extends React.Component {
                 className={classNames(prefixCls, `${prefixCls}-${size}`)}
                 visible={visible}
                 position={{align: 'cc', offset: [0, 0]}}
+                size={sizeProp}
                 closable={true}
                 maximizable={true}
                 backdrop={true}
